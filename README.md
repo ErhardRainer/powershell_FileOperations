@@ -12,8 +12,8 @@ Dieses PowerShell-Skript (bereinigeVerzeichnisse.ps1) ist für die automatisiert
 * 7-Zip installiert und im Systempfad verfügbar
 ## Verwendung
 * Parameter
-** StartPath: Der Pfad des Startverzeichnisses, von dem aus die Verarbeitung beginnt.
-** demo: Wenn auf $true gesetzt, wird der Vorgang nur simuliert.
+  * StartPath: Der Pfad des Startverzeichnisses, von dem aus die Verarbeitung beginnt.
+  * demo: Wenn auf $true gesetzt, wird der Vorgang nur simuliert.
 * Beispiele
 .\bereinigeVerzeichnisse.ps1 -StartPath "D:\Ordner"
 .\bereinigeVerzeichnisse.ps1 -StartPath "D:\Ordner" -demo $true
@@ -27,7 +27,7 @@ Behandelt Unterverzeichnisse, die .rar-Dateien enthalten. Überprüft auf Vollst
 Behandelt Unterverzeichnisse basierend auf der Anzahl und Art der Unter-Unterverzeichnisse. Verschiebt Dateien und strukturiert die Verzeichnisse um.
 
 ## Lizenz
-Dieses Skript ist lizenziert unter.
+Dieses Skript ist lizenziert unter Apache 2.0.
 
 ## Autor
 Erhard Rainer
