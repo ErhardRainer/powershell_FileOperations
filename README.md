@@ -14,7 +14,9 @@ Das Skript akzeptiert zwei Parameter: StartPath, den Pfad des Startverzeichnisse
 * BehandleUnterverzeichnisse behandelt verschiedene Fälle basierend auf der Anzahl und Art der Unter-Unterverzeichnisse. Parameter sind Unterverzeichnis, demo, iteriereMehrereVerzeichnisse und zuIgnorierendeVerzeichnisse.
 ### Beispiele
 Starten des Skripts im Demo-Modus für den Pfad "D:\Ordner":
+
 PS> .\bereinigeVerzeichnisse.ps1 -StartPath "D:\Ordner" -demo $true
+
 Dies simuliert die Verarbeitung, ohne tatsächliche Dateioperationen durchzuführen.
 ### Anmerkungen
 * Autor: Erhard Rainer
@@ -34,10 +36,15 @@ Das Skript nimmt zwei Parameter: directoryPath, den Pfad des zu überprüfenden 
 * Die Hauptfunktion Create-SFVFile führt den Prozess der Checksummenberechnung durch und speichert das Ergebnis in einer SFV-Datei. Die Parameter sind directoryPath und sfvFilePath.
 ### Beispiele
 Erstellung einer SFV-Datei im Quellverzeichnis:
+
 PS> .\Create-SFVFile.ps1 -directoryPath "C:\MeineDaten"
+
 Erstellt eine SFV-Datei für "C:\MeineDaten" und speichert sie als "C:\MeineDaten\checksums.sfv".
+
 Speicherung der SFV-Datei an einem benutzerdefinierten Ort:
+
 PS> .\Create-SFVFile.ps1 -directoryPath "C:\MeineDaten" -sfvFilePath "D:\Backups\MeineDaten.sfv"
+
 Erstellt eine SFV-Datei für "C:\MeineDaten" und speichert sie unter "D:\Backups\MeineDaten.sfv".
 ### Anmerkungen
 Das Skript nutzt die CRC32-Checksummenberechnung, um die Integrität der Dateien zu überprüfen. Es ist besonders nützlich für die Überprüfung der Dateiintegrität nach dem Kopieren oder Verschieben von Dateien oder zur Verifizierung von Daten in Backup-Szenarien.
@@ -55,6 +62,7 @@ Das Skript nimmt drei Parameter: sourcePath (Pfad zum Quellverzeichnis), destina
 * Pack-Directory: Nimmt den Pfad des zu packenden Verzeichnisses (directoryToPack) und den Pfad der Ziel-ZIP-Datei (destinationZipPath) auf. Erstellt das Zielverzeichnis, falls es nicht existiert, und packt das Verzeichnis in eine ZIP-Datei.
 ### Beispiele
 Backup aller Unterverzeichnisse von W:\ und Speicherung in G:\Meine Ablage_Programmierung, wobei die letzten 5 Versionen jedes Backups behalten werden:
+
 PS> .\BackupAndManageVersions.ps1 -sourcePath "W:\" -destinationPath "G:\Meine Ablage\_Programmierung" -keepVersions 5
 ### Anmerkungen
 Das Skript prüft das Datum der letzten Änderung in jedem Unterverzeichnis und erstellt nur dann ein neues Backup, wenn Änderungen seit dem letzten Backup festgestellt wurden.
