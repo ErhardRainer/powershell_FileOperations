@@ -1,5 +1,5 @@
 # PowerShell-Skripte zur Dateiverwaltung
-## bereinigeVerzeichnisse.ps1
+## [ComprehensiveFileManagementWith7Zip.ps1](https://github.com/ErhardRainer/powershell_FileOperations/blob/main/ComprehensiveFileManagementWith7Zip.ps1)
 ### Kurzbeschreibung
 Dieses PowerShell-Skript ist zur automatisierten Dateiverwaltung und -organisation konzipiert, wobei 7-Zip für Operationen auf Dateiebene verwendet wird. Es durchläuft alle Unterverzeichnisse eines angegebenen Startpfades, um basierend auf der Dateistruktur und dem Inhalt spezifische Aktionen durchzuführen.
 
