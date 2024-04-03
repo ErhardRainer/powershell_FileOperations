@@ -223,3 +223,5 @@ Um RAR-Dateien in den Verzeichnissen "j:\Path\To\Series\S01\" und "j:\Path\To\Se
 - 2023-09-16 - Initiale Version
 
 Dieses Skript bietet eine automatisierte Lösung zur Verwaltung und Entpackung von RAR-Archiven, insbesondere für große Sammlungen oder Archive, die in mehrere Dateien aufgeteilt sind, und trägt so zur Effizienzsteigerung bei der Dateiverwaltung bei.
+# Weitere Powershell Skripte, die nützlich sind
+* [Split-File.ps1](https://www.powershellgallery.com/packages/FileSplitter/1.3/Content/Split-File.ps1)
