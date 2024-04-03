@@ -21,3 +21,23 @@ Dies simuliert die Verarbeitung, ohne tatsächliche Dateioperationen durchzufüh
 * Version: 1.0
 * Erstellungsdatum: 2024-01-09
 Das Skript ermöglicht eine flexible Handhabung verschiedener Datei- und Verzeichnisstrukturen und nutzt dabei die Leistungsfähigkeit von 7-Zip für die Dateibehandlung.
+
+## Create-SFVFile.ps1
+### Kurzbeschreibung
+Dieses PowerShell-Skript ist für die Erstellung einer SFV (Simple File Verification) Datei konzipiert. Es berechnet die CRC32-Checksummen aller Dateien in einem angegebenen Verzeichnis und speichert die Ergebnisse in einer SFV-Datei, die zur Überprüfung der Dateiintegrität genutzt werden kann.
+### Voraussetzungen
+* PowerShell
+* Zugriff auf das zu überprüfende Verzeichnis und optional einen spezifizierten Pfad für die Speicherung der SFV-Datei.
+### Technische Umsetzung
+Das Skript nimmt zwei Parameter: directoryPath, den Pfad des zu überprüfenden Verzeichnisses, und optional sfvFilePath, den Pfad, unter dem die SFV-Datei gespeichert werden soll. Ist kein Pfad für die SFV-Datei angegeben, wird standardmäßig "checksums.sfv" im Quellverzeichnis erstellt. Eine CRC32-Klasse wird genutzt, um die Checksummen zu berechnen. Dateien, die größer als 2GB sind, werden übersprungen.
+### Funktionen und Parameter
+* Die Hauptfunktion Create-SFVFile führt den Prozess der Checksummenberechnung durch und speichert das Ergebnis in einer SFV-Datei. Die Parameter sind directoryPath und sfvFilePath.
+### Beispiele
+Erstellung einer SFV-Datei im Quellverzeichnis:
+PS> .\Create-SFVFile.ps1 -directoryPath "C:\MeineDaten"
+Erstellt eine SFV-Datei für "C:\MeineDaten" und speichert sie als "C:\MeineDaten\checksums.sfv".
+Speicherung der SFV-Datei an einem benutzerdefinierten Ort:
+PS> .\Create-SFVFile.ps1 -directoryPath "C:\MeineDaten" -sfvFilePath "D:\Backups\MeineDaten.sfv"
+Erstellt eine SFV-Datei für "C:\MeineDaten" und speichert sie unter "D:\Backups\MeineDaten.sfv".
+### Anmerkungen
+Das Skript nutzt die CRC32-Checksummenberechnung, um die Integrität der Dateien zu überprüfen. Es ist besonders nützlich für die Überprüfung der Dateiintegrität nach dem Kopieren oder Verschieben von Dateien oder zur Verifizierung von Daten in Backup-Szenarien.
