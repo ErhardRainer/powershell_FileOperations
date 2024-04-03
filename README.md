@@ -14,14 +14,9 @@ Das Skript akzeptiert zwei Parameter: StartPath, den Pfad des Startverzeichnisse
 * BehandleUnterverzeichnisse behandelt verschiedene Fälle basierend auf der Anzahl und Art der Unter-Unterverzeichnisse. Parameter sind Unterverzeichnis, demo, iteriereMehrereVerzeichnisse und zuIgnorierendeVerzeichnisse.
 ### Beispiele
 Starten des Skripts im Demo-Modus für den Pfad "D:\Ordner":
-
-PS> .\bereinigeVerzeichnisse.ps1 -StartPath "D:\Ordner" -demo $true
-
+> .\bereinigeVerzeichnisse.ps1 -StartPath "D:\Ordner" -demo $true
 Dies simuliert die Verarbeitung, ohne tatsächliche Dateioperationen durchzuführen.
 ### Anmerkungen
-* Autor: Erhard Rainer
-* Version: 1.0
-* Erstellungsdatum: 2024-01-09
 Das Skript ermöglicht eine flexible Handhabung verschiedener Datei- und Verzeichnisstrukturen und nutzt dabei die Leistungsfähigkeit von 7-Zip für die Dateibehandlung.
 
 ## Create-SFVFile.ps1
@@ -36,15 +31,10 @@ Das Skript nimmt zwei Parameter: directoryPath, den Pfad des zu überprüfenden 
 * Die Hauptfunktion Create-SFVFile führt den Prozess der Checksummenberechnung durch und speichert das Ergebnis in einer SFV-Datei. Die Parameter sind directoryPath und sfvFilePath.
 ### Beispiele
 Erstellung einer SFV-Datei im Quellverzeichnis:
-
-PS> .\Create-SFVFile.ps1 -directoryPath "C:\MeineDaten"
-
+> .\Create-SFVFile.ps1 -directoryPath "C:\MeineDaten"
 Erstellt eine SFV-Datei für "C:\MeineDaten" und speichert sie als "C:\MeineDaten\checksums.sfv".
-
 Speicherung der SFV-Datei an einem benutzerdefinierten Ort:
-
-PS> .\Create-SFVFile.ps1 -directoryPath "C:\MeineDaten" -sfvFilePath "D:\Backups\MeineDaten.sfv"
-
+> .\Create-SFVFile.ps1 -directoryPath "C:\MeineDaten" -sfvFilePath "D:\Backups\MeineDaten.sfv"
 Erstellt eine SFV-Datei für "C:\MeineDaten" und speichert sie unter "D:\Backups\MeineDaten.sfv".
 ### Anmerkungen
 Das Skript nutzt die CRC32-Checksummenberechnung, um die Integrität der Dateien zu überprüfen. Es ist besonders nützlich für die Überprüfung der Dateiintegrität nach dem Kopieren oder Verschieben von Dateien oder zur Verifizierung von Daten in Backup-Szenarien.
@@ -83,3 +73,21 @@ Starten des Skripts für das Verzeichnis "J:":
 > .\Rename_Folder.ps1 -StartDirectory "J:"
 ### Anmerkungen
 Das Skript bietet eine einfache Möglichkeit, Verzeichnisse basierend auf dem Vorhandensein von .rar Dateien umzubenennen und kann für verschiedene Anwendungsfälle im Dateimanagement angepasst werden.
+
+## UnterOrdner_verschieben.ps1
+### Kurzbeschreibung
+Dieses PowerShell-Skript verschiebt Verzeichnisse basierend auf einem optionalen Regex-Muster, das vierstellige Jahreszahlen am Anfang des Verzeichnisnamens identifiziert, von einem Quell- zu einem Zielverzeichnis. Es berechnet die Gesamtgröße der zu verschiebenden Verzeichnisse und gibt während des Verschiebeprozesses Informationen über den Fortschritt aus.
+### Voraussetzungen
+- PowerShell
+### Technische Umsetzung
+Das Skript akzeptiert drei Parameter:
+- **QuellVerzeichnis**: Das Verzeichnis, von dem aus die Dateien verschoben werden sollen.
+- **ZielVerzeichnis**: Das Zielverzeichnis, in das die Dateien verschoben werden sollen.
+- **regexPattern**: Ein optionales Regex-Muster, das verwendet wird, um zu bestimmen, welche Verzeichnisse verschoben werden sollen. Standardmäßig sucht es nach einer vierstelligen Jahreszahl am Anfang des Namens.
+
+Das Skript filtert Verzeichnisse im Quellverzeichnis, die dem optionalen Regex-Muster entsprechen, ermittelt deren Gesamtgröße und verschiebt sie einzeln ins Zielverzeichnis. Während des Verschiebungsprozesses gibt es den Fortschritt, die übertragene Datenmenge, die Dauer, die aktuelle Transferrate und die geschätzte verbleibende Zeit aus.
+### Beispiele
+Starten des Skripts mit einem angegebenen Quell- und Zielverzeichnis und einem Regex-Muster:
+> .\UnterOrdner_verschieben.ps1 -QuellVerzeichnis "y:\_Filme\" -ZielVerzeichnis "n:\" -regexPattern "^\d{4} -"
+### Anmerkungen
+Das Skript optimiert den Prozess des Verschiebens von Verzeichnissen basierend auf spezifischen Kriterien, was besonders nützlich für die Organisation von Dateien und Verzeichnissen nach bestimmten Mustern oder Konventionen ist.
