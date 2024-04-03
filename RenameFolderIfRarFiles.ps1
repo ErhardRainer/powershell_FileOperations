@@ -13,7 +13,7 @@ http://erhard-rainer.com
 2024-04-03
 
 .EXAMPLE
-PS> .\Rename_Folder.ps1 -StartDirectory "J:\"
+PS> .\RenameFolderIfRarFiles.ps1 -StartDirectory "J:\"
 
 .PARAMETER StartDirectory
 Das Startverzeichnis, von dem aus die Suche beginnen soll.

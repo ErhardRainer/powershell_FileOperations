@@ -12,7 +12,7 @@ Der Pfad, von dem aus die Dateien organisiert werden sollen. Standardmäßig auf
 Die maximale Anzahl von Dateien pro Unterordner. Standardmäßig auf 150 gesetzt.
 
 .EXAMPLE
-PS> .\großeVerzeichnisseAufteilen.ps1 -startPath "i:\" -filesCount 150
+PS> .\DistributeFilesIntoFolders.ps1 -startPath "i:\" -filesCount 150
 
 .NOTES
 Autor: Erhard Rainer

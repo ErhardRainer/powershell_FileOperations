@@ -12,7 +12,7 @@
     Wenn auf $true gesetzt, wird der Vorgang nur simuliert und keine realen Dateioperationen durchgeführt.
 
 .EXAMPLE
-    PS> .\bereinigeVerzeichnisse.ps1 -StartPath "D:\Ordner" -demo $true
+    PS> .\ComprehensiveFileManagementWith7Zip.ps1 -StartPath "D:\Ordner" -demo $true
 
 .NOTES
     Autor: Erhard Rainer

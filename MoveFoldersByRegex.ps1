@@ -13,7 +13,7 @@ http://erhard-rainer.com
 2024-04-03
 
 .EXAMPLE
-PS> .\UnterOrdner_verschieben.ps1 -QuellVerzeichnis "y:\_Filme\" -ZielVerzeichnis "n:\" -regexPattern "^\d{4} -"
+PS> .\MMoveFoldersByRegex.ps1 -QuellVerzeichnis "y:\_Filme\" -ZielVerzeichnis "n:\" -regexPattern "^\d{4} -"
 
 .PARAMETER QuellVerzeichnis
 Das Verzeichnis, von dem aus die Dateien verschoben werden sollen.
