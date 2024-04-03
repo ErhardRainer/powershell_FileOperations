@@ -15,24 +15,7 @@ Ein optionaler Boolean-Parameter, der bestimmt, ob Dateien, die öfter als der S
 Der Schwellenwert für die Anzahl der Vorkommen einer Datei, ab der Aktionen ergriffen werden (Anzeige oder Löschung). Standardmäßig auf 2 gesetzt.
 
 .EXAMPLE
-<#
-.SYNOPSIS
-Analysiert und optional löscht Dateien in einem Zielverzeichnis basierend auf ihrer Häufigkeit.
-
-.DESCRIPTION
-Dieses Skript durchläuft rekursiv alle Dateien in einem angegebenen Zielverzeichnis, zählt, wie oft jede Datei vorkommt, und zeigt Dateien an, die öfter als ein bestimmter Schwellenwert vorhanden sind. Optional können diese Dateien automatisch gelöscht werden.
-
-.PARAMETER Zielverzeichnis
-Das Verzeichnis, in dem die Dateien analysiert (und optional gelöscht) werden sollen. Dies ist ein verpflichtender Parameter.
-
-.PARAMETER delete
-Ein optionaler Boolean-Parameter, der bestimmt, ob Dateien, die öfter als der Schwellenwert vorkommen, gelöscht werden sollen. Standardmäßig auf $false gesetzt.
-
-.PARAMETER Anzahl
-Der Schwellenwert für die Anzahl der Vorkommen einer Datei, ab der Aktionen ergriffen werden (Anzeige oder Löschung). Standardmäßig auf 2 gesetzt.
-
-.EXAMPLE
-PS> .\ScriptName.ps1 -Zielverzeichnis "n:\_neu\" -delete $true -Anzahl 2
+PS> .\DetectAndManageDuplicateFiles.ps1 -Zielverzeichnis "n:\_neu\" -delete $true -Anzahl 2
 
 .NOTES
 Version: 1.0
