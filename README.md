@@ -68,3 +68,5 @@ PS> .\BackupAndManageVersions.ps1 -sourcePath "W:\" -destinationPath "G:\Meine A
 Das Skript prüft das Datum der letzten Änderung in jedem Unterverzeichnis und erstellt nur dann ein neues Backup, wenn Änderungen seit dem letzten Backup festgestellt wurden.
 Durch die Begrenzung der Anzahl der Backup-Versionen hilft das Skript, den Speicherplatz effizient zu nutzen.
 Die Verwaltung und Automatisierung des Backup-Prozesses kann durch Einplanen des Skripts über den Windows Task Scheduler weiter automatisiert werden.
+
+
