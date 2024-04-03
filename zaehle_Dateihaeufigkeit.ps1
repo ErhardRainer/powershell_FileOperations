@@ -1,13 +1,44 @@
-﻿# Zielverzeichnis festlegen
-$Zielverzeichnis = "n:\_neu\" # Ändern Sie dies zu Ihrem Zielverzeichnis
-$delte = $true
+﻿<#
+.SYNOPSIS
+Analysiert und optional löscht Dateien in einem Zielverzeichnis basierend auf ihrer Häufigkeit.
 
-# Rekursives Sammeln aller Dateien
+.DESCRIPTION
+Dieses Skript durchläuft rekursiv alle Dateien in einem angegebenen Zielverzeichnis, zählt, wie oft jede Datei vorkommt, und zeigt Dateien an, die öfter als ein bestimmter Schwellenwert vorhanden sind. Optional können diese Dateien automatisch gelöscht werden.
+
+.PARAMETER Zielverzeichnis
+Das Verzeichnis, in dem die Dateien analysiert (und optional gelöscht) werden sollen. Dies ist ein verpflichtender Parameter.
+
+.PARAMETER delete
+Ein optionaler Boolean-Parameter, der bestimmt, ob Dateien, die öfter als der Schwellenwert vorkommen, gelöscht werden sollen. Standardmäßig auf $false gesetzt.
+
+.PARAMETER Anzahl
+Der Schwellenwert für die Anzahl der Vorkommen einer Datei, ab der Aktionen ergriffen werden (Anzeige oder Löschung). Standardmäßig auf 2 gesetzt.
+
+.EXAMPLE
+PS> .\ScriptName.ps1 -Zielverzeichnis "n:\_neu\" -delete $true -Anzahl 2
+
+.NOTES
+Version: 1.0
+Autor: [Autor entfernt]
+Datum: [Datum entfernt]
+#>
+
+param (
+    [Parameter(Mandatory=$true)]
+    [string]$Zielverzeichnis, # Definiert das Zielverzeichnis als verpflichtenden Parameter
+
+    [bool]$delete = $false, # Definiert, ob Dateien gelöscht werden sollen, als optionalen Parameter
+
+    [int]$Anzahl = 2 # Definiert den Schwellenwert für die Anzahl der Vorkommen als optionalen Parameter
+)
+
+# Rekursives Sammeln aller Dateien im Zielverzeichnis
 $alleDateien = Get-ChildItem -Path $Zielverzeichnis -Recurse -File
 
-# Erstellen einer Hashtabelle zur Speicherung der Häufigkeiten
+# Erstellen einer Hashtabelle zur Speicherung der Häufigkeiten jeder Datei
 $dateiHaeufigkeiten = @{}
 
+# Durchlaufen aller Dateien und Zählen ihrer Vorkommen
 foreach ($datei in $alleDateien) {
     $dateiname = $datei.Name
     if ($dateiHaeufigkeiten.ContainsKey($dateiname)) {
@@ -17,7 +48,7 @@ foreach ($datei in $alleDateien) {
     }
 }
 
-# Erstellen einer Liste von PSCustomObjects
+# Erstellen einer Liste von PSCustomObjects mit Dateinamen und deren Anzahl
 $dateiListe = foreach ($item in $dateiHaeufigkeiten.GetEnumerator()) {
     [PSCustomObject]@{
         Dateiname = $item.Key
@@ -25,12 +56,12 @@ $dateiListe = foreach ($item in $dateiHaeufigkeiten.GetEnumerator()) {
     }
 }
 
-# Sortieren der Liste nach Anzahl absteigend und Filtern, um nur Dateien mit einer Anzahl > 1 anzuzeigen
-$dateiListe | Where-Object { $_.Anzahl -gt 2 } | Sort-Object Anzahl -Descending | Format-Table -AutoSize
+# Ausgabe der Dateien, die öfter als der Schwellenwert vorkommen, sortiert nach ihrer Anzahl
+$dateiListe | Where-Object { $_.Anzahl -gt $Anzahl } | Sort-Object Anzahl -Descending | Format-Table -AutoSize
 
-if ($delte) {
-    # Zusätzlicher Schritt: Löschen von Dateien, die öfter als zweimal vorkommen
-    $dateiListe | Where-Object { $_.Anzahl -gt 2 } | ForEach-Object {
+# Optional: Löschen von Dateien, die öfter als der Schwellenwert vorkommen
+if ($delete) {
+    $dateiListe | Where-Object { $_.Anzahl -gt $Anzahl } | ForEach-Object {
         $dateiname = $_.Dateiname
 
         # Finde alle Dateien mit diesem Namen und lösche sie
