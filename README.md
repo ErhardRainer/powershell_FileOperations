@@ -69,4 +69,17 @@ Das Skript prüft das Datum der letzten Änderung in jedem Unterverzeichnis und 
 Durch die Begrenzung der Anzahl der Backup-Versionen hilft das Skript, den Speicherplatz effizient zu nutzen.
 Die Verwaltung und Automatisierung des Backup-Prozesses kann durch Einplanen des Skripts über den Windows Task Scheduler weiter automatisiert werden.
 
-
+## Rename_Folder.ps1
+### Kurzbeschreibung
+Dieses PowerShell-Skript ist dafür konzipiert, Verzeichnisse, die .rar Dateien enthalten, umzubenennen, indem es "[uv]" zum Verzeichnisnamen hinzufügt. Es durchsucht rekursiv ein angegebenes Startverzeichnis nach solchen Unterverzeichnissen und führt die Umbenennung durch.
+### Voraussetzungen
+* PowerShell
+### Technische Umsetzung
+* Das Skript benötigt einen Pflichtparameter:
+** **StartDirectory:** Definiert das Startverzeichnis, von dem aus die Suche und Umbenennung beginnen soll.
+Es durchläuft rekursiv alle Unterverzeichnisse des angegebenen Startverzeichnisses, sucht nach .rar Dateien und benennt die entsprechenden Verzeichnisse um, indem "[uv]" an den Namen angehängt wird. Es wird eine Meldung auf der Konsole ausgegeben, die über den Umbenennungsprozess informiert.
+### Beispiele
+Starten des Skripts für das Verzeichnis "J:":
+> .\Rename_Folder.ps1 -StartDirectory "J:"
+### Anmerkungen
+Das Skript bietet eine einfache Möglichkeit, Verzeichnisse basierend auf dem Vorhandensein von .rar Dateien umzubenennen und kann für verschiedene Anwendungsfälle im Dateimanagement angepasst werden.
