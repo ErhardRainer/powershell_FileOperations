@@ -41,3 +41,22 @@ PS> .\Create-SFVFile.ps1 -directoryPath "C:\MeineDaten" -sfvFilePath "D:\Backups
 Erstellt eine SFV-Datei für "C:\MeineDaten" und speichert sie unter "D:\Backups\MeineDaten.sfv".
 ### Anmerkungen
 Das Skript nutzt die CRC32-Checksummenberechnung, um die Integrität der Dateien zu überprüfen. Es ist besonders nützlich für die Überprüfung der Dateiintegrität nach dem Kopieren oder Verschieben von Dateien oder zur Verifizierung von Daten in Backup-Szenarien.
+
+## BackupAndManageVersions.ps1
+### Kurzbeschreibung
+Dieses PowerShell-Skript dient dem automatischen Backup und der Verwaltung von Verzeichnisversionen. Es erstellt gepackte Backups von allen Unterverzeichnissen eines angegebenen Quellpfades, wenn Änderungen festgestellt werden, und speichert diese im Zielverzeichnis. Dabei wird eine definierte Anzahl der neuesten Backup-Versionen behalten und ältere Versionen werden gelöscht.
+### Voraussetzungen
+* PowerShell
+* Genügend Speicherplatz im Zielverzeichnis für die Backup-Dateien.
+* Zugriffsrechte für das Lesen der Quellverzeichnisse und das Schreiben in das Zielverzeichnis.
+### Technische Umsetzung
+Das Skript nimmt drei Parameter: sourcePath (Pfad zum Quellverzeichnis), destinationPath (Pfad zum Zielverzeichnis, wo die Backups gespeichert werden) und keepVersions (Anzahl der Backup-Versionen, die erhalten bleiben sollen). Es enthält die Funktion Pack-Directory, die ein Verzeichnis in eine ZIP-Datei komprimiert und im Zielverzeichnis speichert.
+### Funktionen und Parameter
+* Pack-Directory: Nimmt den Pfad des zu packenden Verzeichnisses (directoryToPack) und den Pfad der Ziel-ZIP-Datei (destinationZipPath) auf. Erstellt das Zielverzeichnis, falls es nicht existiert, und packt das Verzeichnis in eine ZIP-Datei.
+### Beispiele
+Backup aller Unterverzeichnisse von W:\ und Speicherung in G:\Meine Ablage_Programmierung, wobei die letzten 5 Versionen jedes Backups behalten werden:
+PS> .\BackupAndManageVersions.ps1 -sourcePath "W:\" -destinationPath "G:\Meine Ablage\_Programmierung" -keepVersions 5
+### Anmerkungen
+Das Skript prüft das Datum der letzten Änderung in jedem Unterverzeichnis und erstellt nur dann ein neues Backup, wenn Änderungen seit dem letzten Backup festgestellt wurden.
+Durch die Begrenzung der Anzahl der Backup-Versionen hilft das Skript, den Speicherplatz effizient zu nutzen.
+Die Verwaltung und Automatisierung des Backup-Prozesses kann durch Einplanen des Skripts über den Windows Task Scheduler weiter automatisiert werden.
