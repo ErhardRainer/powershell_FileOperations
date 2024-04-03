@@ -1,33 +1,23 @@
-# PowerShell-Skript zur Dateiverwaltung
-## Überblick
-Dieses PowerShell-Skript (bereinigeVerzeichnisse.ps1) ist für die automatisierte Verwaltung und Organisation von Dateien in einem spezifizierten Startverzeichnis konzipiert. Es nutzt 7-Zip zur Behandlung von .rar-Dateien und organisiert die Struktur von Unterverzeichnissen.
+# PowerShell-Skripte zur Dateiverwaltung
+## bereinigeVerzeichnisse.ps1
+### Kurzbeschreibung
+Dieses PowerShell-Skript ist zur automatisierten Dateiverwaltung und -organisation konzipiert, wobei 7-Zip für Operationen auf Dateiebene verwendet wird. Es durchläuft alle Unterverzeichnisse eines angegebenen Startpfades, um basierend auf der Dateistruktur und dem Inhalt spezifische Aktionen durchzuführen.
 
-## Features
-* Durchläuft rekursiv alle Unterverzeichnisse eines angegebenen Startpfades.
-* Behandelt speziell .rar-Dateien: Überprüft, entpackt und löscht sie bei Erfolg.
-* Strukturiert Unterverzeichnisse um: Verschiebt Dateien aus Unter-Unterverzeichnissen eine Ebene höher.
-* Demo-Modus: Simuliert Aktionen ohne reale Dateioperationen.
-## Voraussetzungen
+### Voraussetzungen
 * PowerShell
-* 7-Zip installiert und im Systempfad verfügbar
-## Verwendung
-* Parameter
-  * StartPath: Der Pfad des Startverzeichnisses, von dem aus die Verarbeitung beginnt.
-  * demo: Wenn auf $true gesetzt, wird der Vorgang nur simuliert.
-* Beispiele
-.\bereinigeVerzeichnisse.ps1 -StartPath "D:\Ordner"
-.\bereinigeVerzeichnisse.ps1 -StartPath "D:\Ordner" -demo $true
-
-## Funktionsweise
-### DurchlaufeVerzeichnisse
-Durchläuft alle Unterverzeichnisse des angegebenen Verzeichnisses und ruft je nach Inhalt spezifische Behandlungsfunktionen auf.
-### BehandleRarDateien
-Behandelt Unterverzeichnisse, die .rar-Dateien enthalten. Überprüft auf Vollständigkeit, entpackt und löscht sie bei Erfolg.
-### BehandleUnterverzeichnisse
-Behandelt Unterverzeichnisse basierend auf der Anzahl und Art der Unter-Unterverzeichnisse. Verschiebt Dateien und strukturiert die Verzeichnisse um.
-
-## Lizenz
-Dieses Skript ist lizenziert unter Apache 2.0.
-
-## Autor
-Erhard Rainer
+* 7-Zip muss installiert und der Pfad zur 7-Zip-Executable (7z.exe) muss korrekt angegeben werden.
+### Technische Umsetzung
+Das Skript akzeptiert zwei Parameter: StartPath, den Pfad des Startverzeichnisses, von dem aus die Verarbeitung beginnt, und demo, einen Schalter, der, wenn auf $true gesetzt, den Vorgang nur simuliert. Es definiert mehrere Funktionen, darunter DurchlaufeVerzeichnisse zum rekursiven Durchlaufen der Verzeichnisstruktur, BehandleRarDateien zur Behandlung von .rar-Dateien, einschließlich deren Entpackung mit 7-Zip, und BehandleUnterverzeichnisse zur speziellen Behandlung von Unter-Unterverzeichnissen basierend auf ihrer Struktur und Inhalt.
+### Funktionen und Parameter
+* DurchlaufeVerzeichnisse nimmt die Parameter Verzeichnis, demo, iteriereMehrereVerzeichnisse und zuIgnorierendeVerzeichnisse auf. Diese Funktion durchläuft alle Unterverzeichnisse und ruft je nach Situation spezifische Behandlungsfunktionen auf.
+* BehandleRarDateien ist für die Behandlung von .rar-Dateien zuständig. Sie prüft, ob die .rar-Dateien eine vollständige Serie bilden und führt das Entpacken mit 7-Zip durch. Erforderliche Parameter sind Unterverzeichnis, PfadZu7Zip und demo.
+* BehandleUnterverzeichnisse behandelt verschiedene Fälle basierend auf der Anzahl und Art der Unter-Unterverzeichnisse. Parameter sind Unterverzeichnis, demo, iteriereMehrereVerzeichnisse und zuIgnorierendeVerzeichnisse.
+### Beispiele
+Starten des Skripts im Demo-Modus für den Pfad "D:\Ordner":
+PS> .\bereinigeVerzeichnisse.ps1 -StartPath "D:\Ordner" -demo $true
+Dies simuliert die Verarbeitung, ohne tatsächliche Dateioperationen durchzuführen.
+### Anmerkungen
+* Autor: Erhard Rainer
+* Version: 1.0
+* Erstellungsdatum: 2024-01-09
+Das Skript ermöglicht eine flexible Handhabung verschiedener Datei- und Verzeichnisstrukturen und nutzt dabei die Leistungsfähigkeit von 7-Zip für die Dateibehandlung.
